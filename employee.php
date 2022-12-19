@@ -3,30 +3,6 @@
 session_start();
 include "conn.php";
 include "include/auth.php";
-
-
-// Select the employee table
-// $query = 'SELECT * FROM employee';
-// $stmt = $dbh->prepare($query);
-// $stmt->execute();
-// $result = $stmt->fetchAll();
-// ?>
-
-
-// ?>
-
-// <script>
-// 	function refreshTable() {
-// 		$.ajax({
-// 			url: 'employee.php', 
-// 			success: function (data) {
-// 				$('#employee-table').html(data); 
-// 			}
-// 		});
-// 	}
-
-// </script>
-<?php
 include "include/admin_header.php"
 	?>
 
@@ -46,12 +22,12 @@ include "include/admin_header.php"
 						<div class="col-xs-12">
 							<div class="well">
 								<?php
-                            // Retrieve salary data from the database
-                            $query = "SELECT * FROM salary";
-                            $stmt = $dbh->prepare($query);
-                            $stmt->execute();
-                            $salaries = $stmt->fetchAll();
-                            ?>
+                                // Retrieve salary data from the database
+                                $query = "SELECT * FROM salary";
+                                $stmt = $dbh->prepare($query);
+                                $stmt->execute();
+                                $salaries = $stmt->fetchAll();
+                                ?>
 
 								<table class="table table-bordered">
 									<thead>
@@ -59,7 +35,10 @@ include "include/admin_header.php"
 											<th>Name</th>
 											<th>Phone No</th>
 											<th>Emp Code</th>
-											<th>Salary</th>
+											<th>Earnings</th>
+											<th>Deductions</th>
+											<th>Basic Salary</th>
+											<th>Payable Salary</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -75,14 +54,25 @@ include "include/admin_header.php"
 												<?php echo $salary['emp_code']; ?>
 											</td>
 											<td>
+												<?php echo $salary['earning_type_amount']; ?>
+											</td>
+											<td>
+												<?php echo $salary['deduction_amount']; ?>
+											</td>
+											<td>
 												<?php echo $salary['payable_salary']; ?>
+											</td>
+											<td>
+												<?php
+	                                        // Calculate the total salary
+                                        	$total_salary = $salary['earning_type_amount'] - $salary['deduction_amount'] + $salary['payable_salary'];
+	                                        echo $total_salary;
+                                                ?>
 											</td>
 										</tr>
 										<?php } ?>
 									</tbody>
 								</table>
-
-
 							</div>
 						</div>
 					</div>

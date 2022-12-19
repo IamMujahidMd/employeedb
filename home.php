@@ -13,21 +13,35 @@ include "include/admin_header.php"
 <body>
 
 	<div id="wrapper">
-
-		<!-- Navigation -->
-		<?php include "include/admin_navigation.php" ?>
-		<div id="page-wrapper">
-			<div class="container-fluid">
-				<!-- Page Heading -->
-				<?php include "include/admin_footer.php" ?>
-				<h4 class="text-success">YOU ARE LOGGED IN SUCCESSFULLY</h4>
-				<h3>EXPLORE THE EMPLYOEE DATABASE FROM THE LEFT NAV BAR</h3>
-				<!-- /.row -->
-				<div class="col-xs-6">
+		<div id="login-overlay" class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
 				</div>
-				<!-- Page Heading -->
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="well">
+								<?php include "include/admin_navigation.php" ?>
+								<div id="page-wrapper">
+									<div class="container-fluid">
+										<!-- Page Heading -->
+										<?php include "include/admin_footer.php" ?>
+										<h4 class="text-success">YOU ARE LOGGED IN SUCCESSFULLY</h4>
+										<h3>EXPLORE THE EMPLYOEE DATABASE FROM THE LEFT NAV BAR</h3>
+										<!-- /.row -->
+										<div class="col-xs-6">
+										</div>
+										<!-- Page Heading -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+
+		<!-- Navigation -->
 		<!-- /.container-fluid -->
 	</div>
 	<!-- /#page-wrapper -->

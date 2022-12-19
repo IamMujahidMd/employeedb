@@ -9,9 +9,7 @@ $query = "SELECT * FROM employee_earning";
 $stmt = $dbh->prepare($query);
 $stmt->execute();
 $earningTypes = $stmt->fetchAll();
-
 ?>
-
 <body>
     <div id="wrapper">
         <!-- Navigation -->
@@ -50,21 +48,21 @@ $earningTypes = $stmt->fetchAll();
                                                 <!-- Add a hidden input field to store the selected earning type amount -->
                                                 <input type="hidden" id="earning_type_amount"
                                                     name="earning_type_amount">
-                                                    <!--When earning type select element to trigger an AJAX request to retrieve the selected earning type amount when a new option is selected -->
-                                                    <select class="form-control" id="earning_type" name="earning_type"
-                                                    onchange="getEarningTypeAmount(this.value)">
+                                                <!--When earning type select element to trigger an AJAX request to retrieve the selected earning type amount when a new option is selected -->
+                                                <select class="form-control" id="earning_type" name="earning_type"
+                                                    onchange="getEarningTypeAmount(this.value)" multiple>
                                                     <?php foreach ($data = $earningTypes as $earningType) { ?>
-                                                        <option value="<?php echo $earningType['id']; ?>">
-                                                            <?php echo $earningType['earning_type']; ?>
-                                                        </option>
-                                                        <?php } ?>
-                                                    </select><br>
-                                                    <!--label and an input field for the earning type amount -->
-                                                    <label class="control-label" for="earning_type_amount">Earning Type
-                                                        Amount:</label>
-                                                    <input class="form-control" type="text" id="earning_type_amount_display"
-                                                        name="earning_type_amount_display" readonly>
-                                                    
+                                                    <option value="<?php echo $earningType['id']; ?>">
+                                                        <?php echo $earningType['earning_type']; ?>
+                                                    </option>
+                                                    <?php } ?>
+                                                </select><br>
+                                                <!--label and an input field for the earning type amount -->
+                                                <label class="control-label" for="earning_type_amount">Earning Type
+                                                    Amount:</label>
+                                                <input class="form-control" type="text" id="earning_type_amount_display"
+                                                    name="earning_type_amount_display" readonly>
+
                                                 <!-- JavaScript function to make an AJAX request to retrieve the selected earning type amount -->
                                                 <script>
                                                     function getEarningTypeAmount(earningTypeId) {
@@ -78,6 +76,7 @@ $earningTypes = $stmt->fetchAll();
                                                         };
                                                         xhttp.open("GET", "get_earning_type_amount.php?earningTypeId=" + earningTypeId, true);
                                                         xhttp.send();
+                                                        
                                                     }
                                                 </script>
 
@@ -96,9 +95,9 @@ $earningTypes = $stmt->fetchAll();
                                                     <input type="hidden" id="deduction_amount" name="deduction_amount">
                                                     <!-- deduction type select element to trigger an AJAX request to retrieve the selected deduction type amount when a new option is selected -->
                                                     <select class="form-control" id="deduction_type"
-                                                    name="deduction_type"
-                                                    onchange="getDeductionTypeAmount(this.value)">
-                                                    <?php foreach ($data = $deductionTypes as $deductionType) { ?>
+                                                        name="deduction_type" multiple
+                                                        onchange="getDeductionTypeAmount(this.value)">
+                                                        <?php foreach ($data = $deductionTypes as $deductionType) { ?>
                                                         <option value="<?php echo $deductionType['id']; ?>">
                                                             <?php echo $deductionType['deduction_type']; ?>
                                                         </option>
@@ -134,16 +133,13 @@ $earningTypes = $stmt->fetchAll();
                                                     <input class="form-control" type="text" id="payable_salary"
                                                         name="payable_salary"><br>
                                                 </div>
-                                                <input type="hidden" id="total_salary"
-                                                    name="total_salary  ">
-
 
                                                 <div class="form-group">
                                                     <button type="submit" id="submit" name="submit"
                                                         class="btn btn-success btn-lg btn-block">Add</button>
                                                 </div>
 
-                                        </form>
+                                        </form> 
 
                                     </div>
                                 </div>
@@ -164,7 +160,7 @@ $earningTypes = $stmt->fetchAll();
 </body>
 
 </html>
-
+<!-- script to insert the data in to database -->
 <script>
     $(document).ready(function () {
         $("#myform").on('submit', function (event) {

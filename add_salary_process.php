@@ -17,8 +17,8 @@ if (isset($_POST['name']) && isset($_POST['phone_no']) && isset($_POST['emp_code
         $db = new PDO("mysql:host=localhost;dbname=employeedb", "root", "");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // insert the data into the salary table
         $query = "INSERT INTO salary (name, phone_no, emp_code, earning_type, earning_type_amount, deduction_type, deduction_amount, payable_salary) VALUES (:name, :phone_no, :emp_code, :earning_type, :earning_type_amount, :deduction_type, :deduction_amount, :payable_salary)";
+
         $stmt = $db->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':phone_no', $phone_no);
