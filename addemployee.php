@@ -135,7 +135,7 @@ $earningTypes = $stmt->fetchAll();
                                                         name="payable_salary"><br>
                                                 </div>
                                                 <input type="hidden" id="total_salary"
-                                                    name="total_salary">
+                                                    name="total_salary  ">
 
 
                                                 <div class="form-group">
